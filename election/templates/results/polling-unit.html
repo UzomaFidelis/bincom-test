@@ -1,0 +1,46 @@
+{% extends "base.html" %} 
+{% block title %}Polling Unit Results{% endblock %} 
+{% block content %}
+  <h1>Election Results by Polling Units</h1>
+  <label for="polling-unit">Select Polling Unit </label>
+  <select id="polling-unit">
+  {% for index,name in enum(sort(results.keys())) %}
+    <option value="{{ name }}" {% if index == 0 %} selected="selected" {% endif %}>
+    {{ name.capitalize() }} 
+    </option>
+  {% endfor %}
+  </select>
+  <table id="result-content">
+  </table>
+
+  <script>
+    window.onload = function () {
+     const data = {{ results | tojson }};
+      <!--console.log(data);-->
+     const selectElement = document.getElementById("polling-unit")
+     const resultTable = document.getElementById("result-content")
+
+      console.log(selectElement.value)
+
+     function displayResult() {
+       const selectedPollingUnit = selectElement.value;
+       resultTable.innerHTML = "<thead><tr><th>Party</th><th>Score</th></tr></thead>";
+       
+       if (selectedPollingUnit) {
+         const items = data[selectedPollingUnit];
+         const renderElem = document.createElement('tbody');
+         if (items.length > 0) {
+            items.forEach(item => {
+              renderElem.innerHTML += `<tr><td>${item[0]}</td><td>${item[1]}</td></tr>`;
+            })
+         } else {
+           renderElem.textContent = "No result for this polling unit";
+         }
+         resultTable.append(renderElem);
+       }
+     }
+      displayResult()
+     selectElement.addEventListener("change", displayResult)
+    }
+  </script>
+{% endblock %}

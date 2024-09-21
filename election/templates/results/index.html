@@ -1,0 +1,12 @@
+{% extends "base.html" %} 
+
+{% block title %}Election Results{% endblock %} 
+
+{% block content %}
+<h1>Election Results Page</h1>
+<nav class="links">
+<a href="{{url_for('results.polling_units')}}">Results by Polling Units</a>
+<a href={{url_for('results.local_governments')}}>Results by Local Government Area</a>
+<a href="{{url_for('results.add_result')}}">Enter results for polling unit</a>
+</nav>
+{% endblock %}

@@ -1,0 +1,59 @@
+label {
+  display: block;
+  margin: 0.5rem 0;
+  font-weight: bold;
+}
+th {
+  background-color: #222;
+  color: #fff;
+  text-align: left;
+}
+tr,
+th {
+  width: 100%;
+  padding: 0 0.3rem 0;
+}
+td {
+  border: 1px solid black;
+}
+table {
+  width: 20rem;
+  border-collapse: collapse;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+}
+
+#polling-unit,
+#local-government,
+#local-government-add {
+  padding: 0.3rem;
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+}
+
+.party-label {
+  font-weight: bold;
+}
+.party-input {
+  padding: 0.3rem;
+}
+#pu-name,
+#pu-id,
+#ward-id {
+  padding: 0.5rem;
+  font-size: 1.2rem;
+}
+#pu-name {
+  width: 20rem;
+}
+
+#submit {
+  display: block;
+  margin-top: 1rem;
+  padding: 0.7rem;
+  color: #fff;
+  background-color: #220077;
+}

@@ -1,0 +1,30 @@
+{% extends "base.html" %} {% block title %}Polling Unit Results{% endblock %} {%
+block content %}
+<h1>Add Election Results For Polling Unit</h1>
+<form action="{{url_for('results.add_result')}}" method="post">
+  <label for="lga">What Local Government Area is the polling unit located</label>
+  <select id="local-government-add" name="lga" id="lga">
+    {% for index,lga in enum(lgas) %}
+      <option value="{{ lga["lga_id"] }}" {% if index == 0 %} selected="selected" {% endif %}>
+      {{ lga["lga_name"].capitalize() }} 
+      </option>
+    {% endfor %}
+  </select>
+  <label for="pu-name">Polling unit name:</label>
+  <input type="text" required id="pu-name" name="polling_unit">
+
+  <label for="pu-id">Polling unit Id:</label>
+  <input type="number" required id="pu-id" name="polling_unit_id">
+
+  <label for="ward-id">Ward Id:</label>
+  <input type="number" required id="ward-id" name="ward_id">
+
+  {% for party in parties %}
+    <label class="party-label" for="{{party["partyname"]}}">{{party["partyname"]}}:</label>
+    <input type="number" name="{{party["partyid"]}}" class="party-input" id={{party["partyname"]}}>
+  {% endfor %}
+
+  <button type="submit" id="submit">Add result</button>
+</form>
+<script></script>
+{% endblock %}
